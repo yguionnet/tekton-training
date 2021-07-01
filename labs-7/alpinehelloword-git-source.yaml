@@ -1,0 +1,13 @@
+apiVersion: tekton.dev/v1alpha1
+kind: PipelineResource
+metadata:
+  name: alpinehelloworld-git-source
+  namespace: cicd
+spec:
+  type: git
+  params:
+    - name: url
+      value: https://github.com/heroku/alpinehelloworld.git 
+    - name: revision
+      value: master
+
