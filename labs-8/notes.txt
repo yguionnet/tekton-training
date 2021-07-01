@@ -1,0 +1,8 @@
+kubectl -n cicd create secret docker-registry  alpinehelloworld-dockerhub-secret \
+ --docker-server="https://index.docker.io/v1/" \
+ --docker-username=ygu26 \
+ --docker-password="TOKEN" \
+ --docker-email="yannick.guionnet@guiodesv.fr"
+ 
+
+kubectl create clusterrolebinding alpinehelloworld-clusterrolebinding --clusterrole=edit --serviceaccount=cicd:alpinehelloworld-serviceaccount --namespace=cicd
