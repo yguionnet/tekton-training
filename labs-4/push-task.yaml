@@ -1,0 +1,27 @@
+apiVersion: tekton.dev/v1alpha1
+kind: Task
+metadata:
+  name: push-task
+  namespace: cicd
+spec:
+  params:
+    - name: imageName
+      type: string
+      description: The name of the docker image
+      default: myalpinehelloworld
+  steps:
+    - name: push
+      image: docker
+      command:
+        - sh
+        - -c
+        - "
+          docker login --username ygu26 --password TOKEN && \
+          docker tag $(params.imageName) ygu26/$(params.imageName) && \
+          docker push ygu26/$(params.imageName)
+          "
+      securityContext:
+        privileged: true
+      volumeMounts:
+        - name: docker-socket
+          mountPath: /var/run/docker.sock

@@ -1,0 +1,19 @@
+apiVersion: tekton.dev/v1alpha1
+kind: TaskRun
+metadata:
+  name: build-taskrun
+  namespace: cicd
+spec:
+  params:
+    - name: imageName
+      value: myalpinehelloworld
+  taskRef:
+    name: build-task
+  podTemplate:
+    securityContext:
+      runAsUser: 0
+    volumes:
+      - name: docker-socket
+        hostPath:
+          path: /var/run/docker.sock
+          type: Socket
