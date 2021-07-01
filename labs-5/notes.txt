@@ -1,2 +1,3 @@
+<<<<<<< HEAD
 
 kubectl create clusterrolebinding cicd-to-edit --clusterrole=edit --serviceaccount=cicd:default --namespace=cicd
