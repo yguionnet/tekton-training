@@ -1,0 +1,15 @@
+My Environnement is: VM Centos7 VirtualBox
+
+myVM:
+
+kubectl apply --filename https://storage.googleapis.com/tekton-releases/dashboard/latest/tekton-dashboard-release.yaml
+
+kubectl --namespace tekton-pipelines port-forward svc/tekton-dashboard 9097:9097
+
+my Laptop
+
+ssh -L 9097:localhost:9097 myuser@myvmIP
+
+browse http://localhost:9097
+
+
